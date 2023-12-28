@@ -5,6 +5,7 @@ const getUsers=(request, response)=>{
     //get all users
 }
 const getUser=(request, response)=>{
+    
     //get user
     const {user_id}=request.params
     response.status(200);
