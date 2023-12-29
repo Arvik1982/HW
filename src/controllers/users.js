@@ -7,7 +7,7 @@ const getUsers=(request, response)=>{
 const getUser=(request, response)=>{
 
     //get user
-    
+
     const {user_id}=request.params
     response.status(200);
     response.send(`user with id: ${user_id}`); 
@@ -15,7 +15,7 @@ const getUser=(request, response)=>{
 }
 const createUser=(request, response)=>{
     //create new user
-    
+ 
 return User.create({...request.body}).then((user)=>{response.status(201).send(user)})
 
 }
