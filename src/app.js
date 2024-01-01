@@ -1,6 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const userRouter = require('./routes/users')
+const bookRouter = require('./routes/books')
 const cors = require('cors')
 const mongoose=require('mongoose')
 const bodyParser = require('body-parser')
@@ -9,14 +10,14 @@ const loggerOne = require('./middleware/loggerOne')
 dotenv.config();
 
 const {
-    PORT=3000,
+    PORT=3005,
     API_URL= "http://127.0.0.1",
-    MONGO_URL= 'mongodb://localhost:27017/backend'
+    MONGO_URL= 'mongodb://localhost:27017/backDB'
 }= process.env;
 
 
 
-mongoose.connect(MONGO_URL).catch(error=>console.log(error));
+mongoose.connect(MONGO_URL).catch(error=>console.log(error)).then(()=>console.log('mongo connected'));
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.post('/', (request,response)=>{
 })
 
 app.use(userRouter)
+app.use(bookRouter)
 
 app.listen(PORT,()=>{
     console.log(`Сервер запущен по адресу ${API_URL}:${PORT}`)
