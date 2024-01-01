@@ -10,7 +10,7 @@ const loggerOne = require('./middleware/loggerOne')
 dotenv.config();
 
 const {
-    PORT=3000,
+    PORT=3005,
     API_URL= "http://127.0.0.1",
     MONGO_URL= 'mongodb://localhost:27017/backDB'
 }= process.env;

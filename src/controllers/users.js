@@ -9,7 +9,11 @@ const getUser=(request, response)=>{
     //get user
     const {user_id}=request.params
 
-    return User.findById(user_id).then((user)=>{response.status(200).send(user)}).catch((e)=>{ response.status(500).send(e.message)})
+    return User.findById(user_id).then((user)=>{
+     if(user===null)   {response.status(400).send('no user id')}
+     else{response.status(200).send(user)}
+    
+    }).catch((e)=>{ response.status(500).send(e.message)})
 
 }
 const createUser=(request, response)=>{
@@ -28,7 +32,11 @@ return User.findByIdAndUpdate(user_id, {...request.body}).then((user)=>{response
 const deleteUser=(request, response)=>{
     //delete user
 const {user_id}=request.params
-return User.findByIdAndDelete(user_id).then((user)=>{response.status(200).send('deleted')}).catch((e)=>{ response.status(500).send(e.message)}) 
+return User.findByIdAndDelete(user_id).then((user)=>{
+if(user===null){response.status(400).send('no user to delete')}
+else{response.status(200).send('deleted')}    
+
+}).catch((e)=>{ response.status(500).send(e.message)}) 
 }
 
 module.exports ={
